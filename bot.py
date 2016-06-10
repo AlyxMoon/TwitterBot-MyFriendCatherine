@@ -1,9 +1,31 @@
 import tweepy
+import re
 from secrets import *
 
+# Authentication and loading the API
 auth = tweepy.OAuthHandler(API_KEY, API_SECRET)
 auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
 api = tweepy.API(auth)
 
-result = api.search(q = '"my cat"', count = 1, rpp = 1)
-print result
+# Search!
+result = api.search(q = '"my cat"', count = 1, rpp = 1, lang = 'en')
+text = result[0].text
+#text = 'my cat is a total square, my cat'
+
+# Filter out undesirable parts of string (such as mentions and urls)
+
+# Get rid of URL's completely
+text = re.sub('http\S+', '', text)
+# Remove @ symbols
+text = re.sub('@+', '', text)
+# Remove # and any text associated with them
+# Extra join and split is to remove resulting extra whitespace
+text = ' '.join(re.sub('#\S+', '', text).split())
+
+# Catherinize it
+pattern = re.compile('(?:^|\W)my cat(?:$|\W)', re.IGNORECASE)
+text = ' '.join(re.sub(pattern, ' my friend Catherine ', text).split())
+
+# It's done!
+api.update_status(text)
+
