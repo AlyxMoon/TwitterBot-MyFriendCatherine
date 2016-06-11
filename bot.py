@@ -1,6 +1,12 @@
 import tweepy
 import re
-from secrets import *
+import os
+
+
+API_KEY = os.environ['API_KEY']
+API_SECRET = os.environ['API_SECRET']
+ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
+ACCESS_TOKEN_SECRET = os.environ['ACCESS_TOKEN_SECRET']
 
 # Authentication and loading the API
 auth = tweepy.OAuthHandler(API_KEY, API_SECRET)
@@ -28,4 +34,3 @@ text = ' '.join(re.sub(pattern, ' my friend Catherine ', text).split())
 
 # It's done!
 api.update_status(text)
-
