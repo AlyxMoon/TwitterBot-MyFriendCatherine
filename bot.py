@@ -5,6 +5,7 @@ import os
 # Create the scheduler
 from apscheduler.schedulers.blocking import BlockingScheduler
 sched = BlockingScheduler()
+sched.start()
 
 # Good ol' environment variables with our secret info
 API_KEY = os.environ['API_KEY']
@@ -17,7 +18,7 @@ auth = tweepy.OAuthHandler(API_KEY, API_SECRET)
 auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
 api = tweepy.API(auth)
 
-
+@sched.scheduled_job('interval', seconds = 5)
 def doTweet():
 	# Search!
 	result = api.search(q = '"my cat"', count = 1, rpp = 1, lang = 'en')
@@ -40,8 +41,4 @@ def doTweet():
 
 	# It's done!
 	print u'%s' % text
-	api.update_status(text)
-
-# Last but not least, schedule the task to run every 30 minutes
-sched.add_job(doTweet, "interval", minutes = 30)
-sched.start()
+	#api.update_status(text)
