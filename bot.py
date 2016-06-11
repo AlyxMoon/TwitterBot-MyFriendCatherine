@@ -33,4 +33,5 @@ pattern = re.compile('(?:^|\W)my cat(?:$|\W)', re.IGNORECASE)
 text = ' '.join(re.sub(pattern, ' my friend Catherine ', text).split())
 
 # It's done!
+print u'%s' % text
 api.update_status(text)
