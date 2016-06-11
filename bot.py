@@ -16,8 +16,8 @@ text = result[0].text
 
 # Get rid of URL's completely
 text = re.sub('http\S+', '', text)
-# Remove @ symbols
-text = re.sub('@+', '', text)
+# Remove mentions
+text = re.sub('@\S+', '', text)
 # Remove # and any text associated with them
 # Extra join and split is to remove resulting extra whitespace
 text = ' '.join(re.sub('#\S+', '', text).split())
