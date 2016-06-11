@@ -2,6 +2,8 @@ import tweepy
 import re
 import os
 
+import logging
+logging.basicConfig()
 # Create the scheduler
 from apscheduler.schedulers.blocking import BlockingScheduler
 sched = BlockingScheduler()
