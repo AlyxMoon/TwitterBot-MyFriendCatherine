@@ -44,3 +44,4 @@ def doTweet():
 
 # Last but not least, schedule the task to run every 30 minutes
 sched.addJob(doTweet, "Catherine-ize a Tweet", minutes = 30)
+sched.start()
