@@ -5,7 +5,6 @@ import os
 # Create the scheduler
 from apscheduler.schedulers.blocking import BlockingScheduler
 sched = BlockingScheduler()
-sched.start()
 
 # Good ol' environment variables with our secret info
 API_KEY = os.environ['API_KEY']
@@ -42,3 +41,5 @@ def doTweet():
 	# It's done!
 	print u'%s' % text
 	#api.update_status(text)
+
+sched.start()
