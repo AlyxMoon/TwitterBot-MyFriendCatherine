@@ -43,5 +43,5 @@ def doTweet():
 	api.update_status(text)
 
 # Last but not least, schedule the task to run every 30 minutes
-sched.add_job(doTweet, "Catherine-ize a Tweet", minutes = 30)
+sched.add_job(doTweet, "interval", minutes = 30)
 sched.start()
