@@ -17,7 +17,7 @@ auth = tweepy.OAuthHandler(API_KEY, API_SECRET)
 auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
 api = tweepy.API(auth)
 
-@sched.scheduled_job('interval', minutes = 20)
+@sched.scheduled_job('interval', minutes = 720)
 def doTweet():
 	# Search!
 	result = api.search(q = '"my cat"', count = 1, rpp = 1, lang = 'en')
